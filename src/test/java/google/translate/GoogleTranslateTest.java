@@ -56,6 +56,7 @@ public class GoogleTranslateTest {
         }
 
         // Select source language
+        assert sLang != null;
         sLang.click();
 
         // Expand target / "to" languages
@@ -74,6 +75,7 @@ public class GoogleTranslateTest {
         }
 
         // Select target language
+        assert tLang != null;
         tLang.click();
 
         // Send text to translate
@@ -87,11 +89,11 @@ public class GoogleTranslateTest {
         List<WebElement> translation = driver.findElements(By.cssSelector("span[class='tlid-translation translation'] > span"));
 
         // print out the translation input
-        System.out.printf("\"%s\" from %s to %s is: \n", textToTranslate, sourceLang, targetLang);
+        System.out.printf("%s <-- from %s to %s: \n", textToTranslate, sourceLang, targetLang);
 
         // print out the translation output
         for(WebElement t : translation){
-            System.out.print(t.getText() + " ");
+            System.out.print("\n" + t.getText());
         }
     }
 }
