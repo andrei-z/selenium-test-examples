@@ -89,11 +89,11 @@ public class GoogleTranslateTest {
         List<WebElement> translation = driver.findElements(By.cssSelector("span[class='tlid-translation translation'] > span"));
 
         // print out the translation input
-        System.out.printf("%s <-- from %s to %s: \n", textToTranslate, sourceLang, targetLang);
+        System.out.printf("%s <-- from %s to %s: \n\n", textToTranslate, sourceLang, targetLang);
 
         // print out the translation output
         for(WebElement t : translation){
-            System.out.print("\n" + t.getText());
+            System.out.print(t.getText() +"\n");
         }
     }
 }
