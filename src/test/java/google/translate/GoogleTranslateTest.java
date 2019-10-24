@@ -45,9 +45,10 @@ public class GoogleTranslateTest {
         fromDropdown.click();
 
         // Collect source languages in a List
-        List<WebElement> sLangs = driver.findElements(By.className("language_list_item_wrapper"));
+        List<WebElement> sLangs = driver.
+                findElements(By.xpath("//div[@class='language-list-unfiltered-langs-sl_list']/div[@class='language_list_section']/div[contains(@class, 'language_list_item_wrapper')]"));
 
-        // Locate sourceLang and store its div as a WebElement (sLang)
+        // Locate sourceLang and store it as a WebElement (sLang)
         for(WebElement e : sLangs){
             if(e.getText().equals(sourceLang)){
                 sLang = e;
@@ -64,9 +65,10 @@ public class GoogleTranslateTest {
         toDropdown.click();
 
         // Collect target languages in a list
-        List<WebElement> tLangs = driver.findElements(By.className("language_list_item_wrapper"));
+        List<WebElement> tLangs = driver.
+                findElements(By.xpath("//div[@class='language-list-unfiltered-langs-tl_list']/div[@class='language_list_section']/div[contains(@class, 'language_list_item_wrapper')]"));
 
-        // Locate targetLang and store its div as a WebElement (tLang)
+        // Locate targetLang and store it as a WebElement (tLang)
         for(WebElement e : tLangs){
             if(e.getText().equals(targetLang)){
                 tLang = e;
