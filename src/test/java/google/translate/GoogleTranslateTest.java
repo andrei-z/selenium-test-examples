@@ -1,5 +1,6 @@
 package google.translate;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class GoogleTranslateTest {
         String textToTranslate = "- What's your favorite season?\n- Early Spring is a wonderful time.";
 
         // Target objects
-        String targetLang = "Finnish"; // provide language to translate to
+        String targetLang = "Welsh"; // provide language to translate to
         WebElement tLang = null;
 
         // Expand source / "from" languages
@@ -56,8 +57,9 @@ public class GoogleTranslateTest {
             }
         }
 
+            Assert.assertNotNull("Source language \""+sourceLang+"\" not found", sLang);
+
         // Select source language
-        assert sLang != null;
         sLang.click();
 
         // Expand target / "to" languages
@@ -76,8 +78,9 @@ public class GoogleTranslateTest {
             }
         }
 
+            Assert.assertNotNull("Target language \""+targetLang+"\" not found", tLang);
+
         // Select target language
-        assert tLang != null;
         tLang.click();
 
         // Send text to translate
@@ -89,6 +92,8 @@ public class GoogleTranslateTest {
 
         // Collect the translation spans
         List<WebElement> translation = driver.findElements(By.cssSelector("span[class='tlid-translation translation'] > span"));
+
+            Assert.assertTrue("Translation was empty", translation.size() != 0);
 
         // print out the translation input
         System.out.printf("%s <-- from %s to %s: \n\n", textToTranslate, sourceLang, targetLang);
