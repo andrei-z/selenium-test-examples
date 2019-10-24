@@ -95,10 +95,8 @@ public class GoogleTranslateTest {
 
             Assert.assertTrue("Translation was empty", translation.size() != 0);
 
-        // print out the translation input
+        // print out the translation
         System.out.printf("%s <-- from %s to %s: \n\n", textToTranslate, sourceLang, targetLang);
-
-        // print out the translation output
         for(WebElement t : translation){
             System.out.print(t.getText() +"\n");
         }
