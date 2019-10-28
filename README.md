@@ -1,4 +1,4 @@
-# Selenium WebDriver with Java: test examples
+# Selenium test examples
 
 ## /google/translate
 contains a simple test for Google Translate application
