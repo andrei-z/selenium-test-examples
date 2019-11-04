@@ -15,7 +15,7 @@ import java.util.List;
 
 public class GoogleTranslateTest {
 
-    private String testUrl = "https://translate.google.com/";
+    private String testUrl = "https://translate.google.com/?hl=en";
     private static WebDriver driver;
 
     @BeforeClass
