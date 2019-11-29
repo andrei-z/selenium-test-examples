@@ -1,4 +1,5 @@
 # Selenium test examples
 
 ## /google/translate
-contains a simple test for Google Translate application
+Contains a simple test for Google Translate application<br/>
+PageFactory, Page Object test model
