@@ -29,7 +29,7 @@ public class SampleTest {
     }
 
     @Test
-    public void translateFromEnglishToWelsh(){
+    public void translateFromEnglishToWelsh() {
         StartPage clean = new StartPage(driver);
         clean.selectFrom("English");
         clean.selectTo("Welsh");

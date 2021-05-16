@@ -4,11 +4,13 @@
 
 package google.translate.PageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -16,25 +18,29 @@ import static org.junit.Assert.assertNotNull;
 
 public class StartPage extends Page {
 
-    @FindBy(css = "textarea[id='source']")
+    @FindBy(css = "textarea[class='er8xn']")
     @CacheLookup
     private WebElement inputArea;
 
-    @FindBy(css = "div[class='sl-more tlid-open-source-language-list']")
+    @FindBy(xpath = "(//span[@class='zQ0atf'])[1]")
     @CacheLookup
     private WebElement fromDropdownBtn;
 
-    @FindBy(xpath = "//div[@class='language-list-unfiltered-langs-sl_list']/div[@class='language_list_section']/div[contains(@class, 'language_list_item_wrapper')]")
+    @FindBy(css = "div[class='ordo2']")
     @CacheLookup
     private List<WebElement> sourceLanguages;
 
-    @FindBy(css = "div[class='tl-more tlid-open-target-language-list']")
+    @FindBy(xpath = "(//span[@class='zQ0atf'])[2]")
     @CacheLookup
     private WebElement toDropdownBtn;
 
-    @FindBy(xpath = "//div[@class='language-list-unfiltered-langs-tl_list']/div[@class='language_list_section']/div[contains(@class, 'language_list_item_wrapper')]")
+    @FindBy(css = "div[class='ordo2']")
     @CacheLookup
     private List<WebElement> targetLanguages;
+
+    @FindBy(css = "div[class='SL5JTc']")
+    @CacheLookup
+    private List<WebElement> langsList;
 
 
     public StartPage(WebDriver driver){
@@ -44,11 +50,12 @@ public class StartPage extends Page {
 
         driver().get(url());
 
-        if(!isDisplayed())
-            throw new RuntimeException(name() + " is not displayed. \nExpected url: " + url() + "\nActual url: " + driver.getCurrentUrl());
+        if(!isDisplayed("translate.google.com"))
+            throw new RuntimeException(name()
+                    + " is not displayed. \nExpected url: " + url() + "\nActual url: " + driver.getCurrentUrl());
     }
 
-    public void selectFrom(String sourceLang){
+    public void selectFrom(String sourceLang) {
         fromDropdownBtn.click();
 
         WebElement sLang = null;
@@ -62,7 +69,10 @@ public class StartPage extends Page {
         sLang.click();
     }
 
-    public void selectTo(String targetLang){
+    public void selectTo(String targetLang) {
+        // wait for "from" languages list to collapse
+        explicitWait().until(ExpectedConditions.invisibilityOfAllElements(langsList));
+
         toDropdownBtn.click();
 
         WebElement tLang = null;

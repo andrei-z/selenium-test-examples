@@ -11,8 +11,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 
 public abstract class Page {
 
-    private String name = "";
-    private String url = "";
+    private String name;
+    private String url;
     private WebDriver driver;
     private WebDriverWait explicitWait;
 
@@ -23,11 +23,11 @@ public abstract class Page {
         this.explicitWait = new WebDriverWait(driver, 5);
     }
 
-    boolean isDisplayed(){
+    boolean isDisplayed(String textInUrl){
         boolean result;
 
         try{
-            result = explicitWait().until(urlContains(url));
+            result = explicitWait().until(urlContains(textInUrl));
         }catch (Exception e){
             result = false;
         }

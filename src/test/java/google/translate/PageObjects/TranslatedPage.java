@@ -16,21 +16,22 @@ import java.util.List;
 
 public class TranslatedPage extends Page {
 
-    @FindBy(css = "span[class='tlid-translation translation'] > span")
+    @FindBy(css = "span[class='VIiyi'] > span")
     @CacheLookup
     private List<WebElement> translation;
 
     TranslatedPage(WebDriver driver){
-        super("Translated PageObjects.Page", "https://translate.google.com/?hl=en#view=home&op=translate", driver);
+        super("Translated PageObjects.Page", "https://translate.google.com/?hl=en", driver);
 
         PageFactory.initElements(driver, this);
 
-        if(!isDisplayed())
+        if(!isDisplayed("&op=translate"))
             throw new RuntimeException(name() + " is not displayed. \nExpected url: " + url() + "\nActual url: " + driver.getCurrentUrl());
     }
 
     public Boolean translationExists(){
-        explicitWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("span[class='tlid-translation translation'] > span")));
+        explicitWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("span[class='VIiyi'] > span")));
+
         return (translation.size() > 0);
     }
 
